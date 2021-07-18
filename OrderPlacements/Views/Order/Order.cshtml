@@ -1,0 +1,145 @@
+﻿@model OrderPlacements.Models.order
+
+@{
+    ViewBag.Title = "Order";
+}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#P1").mouseleave(function () {
+            if ($('#CB1').is(":checked")) {
+                var value = $("#P1").val();
+                if (value > 0) {
+                    $("#LP1").text(value * 250);
+                } else {
+                    $("#LP1").text(0);
+                }
+            } else {
+                $("#LP1").text(0);
+            }
+
+            var total = parseFloat($('#LP1').html()) + parseFloat($('#LP2').html()) + parseFloat($('#LP3').html());
+            $("#LTotal").text("Rs." + total);
+        });
+
+        $("#P2").mouseleave(function () {
+            if ($('#CB2').is(":checked")) {
+                var value = $("#P2").val();
+                if (value > 0) {
+                    $("#LP2").text(value * 350);
+                } else {
+                    $("#LP2").text(0);
+                }
+            } else {
+                $("#LP2").text(0);
+            }
+
+            var total = parseFloat($('#LP1').html()) + parseFloat($('#LP2').html()) + parseFloat($('#LP3').html());
+            $("#LTotal").text("Rs." + total);
+        });
+
+        $("#P3").mouseleave(function () {
+            if ($('#CB3').is(":checked")) {
+                var value = $("#P3").val();
+                if (value > 0) {
+                    $("#LP3").text(value * 500);
+                } else {
+                    $("#LP3").text(0);
+                }
+            } else {
+                $("#LP3").text(0);
+            }
+
+            var total = parseFloat($('#LP1').html()) + parseFloat($('#LP2').html()) + parseFloat($('#LP3').html());
+            $("#LTotal").text("Rs." + total);
+        });
+        
+    });
+</script>
+
+<h2>Place Order</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_one, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.pack_one, new { htmlAttributes = new { @id = "CB1" } })
+                @Html.ValidationMessageFor(model => model.pack_one, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_one_quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.pack_one_quantity, new { htmlAttributes = new { @class = "form-control", @id = "P1" } })
+            @Html.ValidationMessageFor(model => model.pack_one_quantity, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.pack_one_quantity, "0", htmlAttributes: new { @class = "control-label col-md-2", @id = "LP1" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_two, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.pack_two, new { htmlAttributes = new { @id = "CB2" } })
+                @Html.ValidationMessageFor(model => model.pack_two, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_two_quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.pack_two_quantity, new { htmlAttributes = new { @class = "form-control", @id = "P2" } })
+            @Html.ValidationMessageFor(model => model.pack_two_quantity, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.pack_two_quantity, "0", htmlAttributes: new { @class = "control-label col-md-2", @id = "LP2" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_three, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <div class="checkbox">
+                @Html.EditorFor(model => model.pack_three, new { htmlAttributes = new { @id = "CB3" } })
+                @Html.ValidationMessageFor(model => model.pack_three, "", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.pack_three_quantity, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.pack_three_quantity, new { htmlAttributes = new { @class = "form-control", @id = "P3" } })
+            @Html.ValidationMessageFor(model => model.pack_three_quantity, "", new { @class = "text-danger" })
+            @Html.LabelFor(model => model.pack_three_quantity, "0", htmlAttributes: new { @class = "control-label col-md-2", @id = "LP3" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.LabelFor(model => model.total, "0", htmlAttributes: new { @class = "control-label col-md-2", @id = "LTotal" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Order" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+}

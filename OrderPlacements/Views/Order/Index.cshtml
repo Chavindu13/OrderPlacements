@@ -1,0 +1,60 @@
+﻿@model IEnumerable<OrderPlacements.Models.order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Your Orders..</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_one)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_one_quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_two)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_two_quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_three)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.pack_three_quantity)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_one)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_one_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_two)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_two_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_three)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.pack_three_quantity)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.total)
+        </td>
+    </tr>
+}
+
+</table>

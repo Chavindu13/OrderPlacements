@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DigicoLabsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="customers">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="first_name" Type="varchar" MaxLength="50" />
+    <Property Name="last_name" Type="varchar" MaxLength="50" />
+    <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="50" />
+    <Property Name="address" Type="varchar" MaxLength="250" />
+    <Property Name="password" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="nic" Type="varchar" MaxLength="12" Nullable="false" />
+    <Property Name="telephone" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="tandc" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="orders">
+    <Key>
+      <PropertyRef Name="order_id" />
+    </Key>
+    <Property Name="order_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="customer_id" Type="int" Nullable="false" />
+    <Property Name="pack_one" Type="bit" Nullable="false" />
+    <Property Name="pack_one_quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="pack_two" Type="bit" Nullable="false" />
+    <Property Name="pack_two_quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="pack_three" Type="bit" Nullable="false" />
+    <Property Name="pack_three_quantity" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="total" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="status" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <Association Name="FK_orders_customers">
+    <End Role="customers" Type="Self.customers" Multiplicity="1" />
+    <End Role="orders" Type="Self.orders" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="customers">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="orders">
+        <PropertyRef Name="customer_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DigicoLabsModelStoreContainer">
+    <EntitySet Name="customers" EntityType="Self.customers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="orders" EntityType="Self.orders" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_orders_customers" Association="Self.FK_orders_customers">
+      <End Role="customers" EntitySet="customers" />
+      <End Role="orders" EntitySet="orders" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

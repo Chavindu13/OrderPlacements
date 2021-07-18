@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DigicoLabsModelStoreContainer" CdmEntityContainer="DbModels">
+    <EntitySetMapping Name="customers">
+      <EntityTypeMapping TypeName="DigicoLabsModel.customer">
+        <MappingFragment StoreEntitySet="customers">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="first_name" ColumnName="first_name" />
+          <ScalarProperty Name="last_name" ColumnName="last_name" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="nic" ColumnName="nic" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="tandc" ColumnName="tandc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="orders">
+      <EntityTypeMapping TypeName="DigicoLabsModel.order">
+        <MappingFragment StoreEntitySet="orders">
+          <ScalarProperty Name="order_id" ColumnName="order_id" />
+          <ScalarProperty Name="customer_id" ColumnName="customer_id" />
+          <ScalarProperty Name="pack_one" ColumnName="pack_one" />
+          <ScalarProperty Name="pack_one_quantity" ColumnName="pack_one_quantity" />
+          <ScalarProperty Name="pack_two" ColumnName="pack_two" />
+          <ScalarProperty Name="pack_two_quantity" ColumnName="pack_two_quantity" />
+          <ScalarProperty Name="pack_three" ColumnName="pack_three" />
+          <ScalarProperty Name="pack_three_quantity" ColumnName="pack_three_quantity" />
+          <ScalarProperty Name="total" ColumnName="total" />
+          <ScalarProperty Name="status" ColumnName="status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
